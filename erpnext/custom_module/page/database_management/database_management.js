@@ -98,7 +98,7 @@ frappe.pages['database-management'].on_page_load = function(wrapper) {
 
 
 
-//  appel des api
+//  appel des api python
 import_data_csv = function() {
 	const formData = new FormData();
     formData.append('file1', document.getElementById('file1').files[0]);
@@ -117,13 +117,14 @@ import_data_csv = function() {
         if (res.message && res.message.status === "success") {
             frappe.msgprint("Import done !");
         } else {
-            frappe.msgprint("Error : " + (res.message?.message || "Unkown"));
+            frappe.msgprint("Error(s) :" + (res.message?.message || "- Unkown"));
         }
     })
     .catch(err => {
         frappe.msgprint("Erreur réseau : " + err.message);
     });
 }
+
 
 
 reset_database = function() {
